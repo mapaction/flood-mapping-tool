@@ -7,6 +7,7 @@ leafmap
 streamlit-bokeh-events
 streamlit-folium
 streamlit-keplergl
+flood_mapper
 # git+https://github.com/giswqs/leafmap
 # git+https://github.com/giswqs/geemap
 earthengine-api~=0.1.318
