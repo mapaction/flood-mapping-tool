@@ -1,6 +1,7 @@
 import streamlit as st
 import geemap.foliumap as geemap
 import pandas as pd
+import geopandas as gpd
 import os
 import ee
 import io
@@ -59,24 +60,24 @@ def app():
         add_slider = st.slider(
         'Select a threshold',
         0.0, 5.0, 1.0, 0.25, help('higher value might reduce overall noise'))
-            # To convert to a string based IO:
-        uploaded_file = st.file_uploader("Choose a file")
-        if uploaded_file is not None:
-            # To read file as bytes:
-            bytes_data = uploaded_file.getvalue()
-            st.write(bytes_data)
+        #     # To convert to a string based IO:
+        # uploaded_file = st.file_uploader("Choose a file")
+        # if uploaded_file is not None:
+        #     # To read file as bytes:
+        #     bytes_data = uploaded_file.getvalue()
+        #     st.write(bytes_data)
 
-            # To convert to a string based IO:
-            stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-            st.write(stringio)
+        #     # To convert to a string based IO:
+        #     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+        #     st.write(stringio)
 
-            # To read file as string:
-            string_data = stringio.read()
-            st.write(string_data)
+        #     # To read file as string:
+        #     string_data = stringio.read()
+        #     st.write(string_data)
 
-            # Can be used wherever a "file-like" object is accepted:
-            dataframe = pd.read_csv(uploaded_file)
-            st.write(dataframe)
+        #     # Can be used wherever a "file-like" object is accepted:
+        #     dataframe = pd.read_csv(uploaded_file)
+        #     st.write(dataframe)
         datasets = {"Yes": {
             "Yes",
         }, "No": {
@@ -104,7 +105,8 @@ def app():
             Draw_export=True,
             locate_control=True,
             plugin_LatLngPopup=False,
-    )
+        )
+        Map.add_basemap("ROADMAP")
 
     with row1_col1:
         keyword = st.text_input("Search for a location:", "")
