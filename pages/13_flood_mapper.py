@@ -29,6 +29,27 @@ st.sidebar.info(
 )
 
 
+@st.cache
+def uploaded_file_to_gdf(data):
+    import tempfile
+    import os
+    import uuid
+
+    _, file_extension = os.path.splitext(data.name)
+    file_id = str(uuid.uuid4())
+    file_path = os.path.join(tempfile.gettempdir(), f"{file_id}{file_extension}")
+
+    with open(file_path, "wb") as file:
+        file.write(data.getbuffer())
+
+    if file_path.lower().endswith(".kml"):
+        gpd.io.file.fiona.drvsupport.supported_drivers["KML"] = "rw"
+        gdf = gpd.read_file(file_path, driver="KML")
+    else:
+        gdf = gpd.read_file(file_path)
+
+    return gdf
+
 def app():
     st.title("Flood mapper application")
     data = st.file_uploader(
@@ -62,6 +83,15 @@ def app():
                     folium.Marker(location=[lat, lng], popup=location).add_to(Map)
                     Map.set_center(lng, lat, 12)
                     st.session_state["zoom_level"] = 12
+            if data: 
+                gdf = uploaded_file_to_gdf(data)
+                try:
+                    st.session_state["roi"] = geemap.gdf_to_ee(gdf, geodesic=False)
+                    Map.add_gdf(gdf, "ROI")
+                except Exception as e:
+                    st.error(e)
+                    st.error("Please draw another ROI and try again.")
+                    return
             Map.to_streamlit()
 
         with row1_col2:
@@ -83,7 +113,7 @@ def app():
             submitted = st.form_submit_button('Compute flood extent')
             if submitted:
                 if data is None:
-                    empty_text.text("No data")
+                    empty_text.text("No data, please select a region..")
                     # empty_text.text("No region selected")
                 else:
                     empty_text.text("Computing... Please wait...")
@@ -96,18 +126,17 @@ def app():
                         str(after_end),
                         export=False)
                     empty_text.text("Done")
-                    Map = geemap.Map(
-                        basemap="HYBRID",
-                        plugin_Draw=True,
-                        Draw_export=True,
-                        locate_control=True,
-                        plugin_LatLngPopup=False,
-                        )
-                    Map.addLayer(detected_flood_vector)
-                    Map.to_streamlit()
-            # out_dir = st.download_button("Export to personal drive", os.path.expanduser('~'), 'Downloads')
-            # with open("flower.png", "rb") as file:
-            #     btn = st.download_button(label="Download image", data=file, file_name="flower.png", mime="image/png")
-         
+                    with row1_col1:
+                        Map = geemap.Map(
+                            basemap="HYBRID",
+                            plugin_Draw=True,
+                            Draw_export=True,
+                            locate_control=True,
+                            plugin_LatLngPopup=False,
+                            )
+                        Map.add_layer(detected_flood_vector, {}, "Flood extent vector")
+                        Map.add_layer(detected_flood_raster, {}, "Flood extent raster")
+                        Map.centerObject(detected_flood_vector)
+                        Map.to_streamlit()         
 app()
 
