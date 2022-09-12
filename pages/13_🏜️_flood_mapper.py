@@ -15,16 +15,17 @@ import geojson
 font_css = """
 <style>
 button[data-baseweb="tab"] {
-    color: #000080;
+    color: #DAA520;
   font-size: 26px;
   font-weight: bold;
-  line-height: 26px;
+  line-height: 40px;
 }
 </style>
 """
 
 st.set_page_config(page_title=None, page_icon=None, layout="wide", initial_sidebar_state="auto", menu_items=None)
 st.write(font_css, unsafe_allow_html=True)
+
 # st.sidebar.title("About")
 # st.sidebar.info(
 #     """
@@ -39,7 +40,6 @@ st.write(font_css, unsafe_allow_html=True)
 #     Mapaction Flood Mapper App
 #     """
 # )
-
 
 @st.cache
 def uploaded_file_to_gdf(data):
@@ -65,7 +65,7 @@ def uploaded_file_to_gdf(data):
 def app():
     tab1, tab2 = st.tabs(["1. input", "2. output"])
     with tab1:
-        st.write("Flood mapper application")
+        st.header("Flood Map Input")
         data = st.file_uploader(
                     "Upload a GeoJSON file to use as an ROI. 😇👇",
                     type=["geojson", "kml", "zip"],
@@ -121,38 +121,51 @@ def app():
             "No",
         }}
 # export_option = st.selectbox("Export to Google Drive (Yes/No)", datasets.keys(), index=0)
-    with st.sidebar.form(key="my_form2"):
-        empty_text = st.empty()
-        submitted = st.form_submit_button('Compute flood extent')
-        if submitted:
-            if data is None:
-                empty_text.text("No data, please select a region..")
-                # empty_text.text("No region selected")
-            else:
-                empty_text.text("Computing... Please wait...")
-                ee_geom_region = ee.Geometry.Polygon(coords)
-                detected_flood_vector, detected_flood_raster, before_imagery, after_imagery = derive_flood_extents(
-                    ee_geom_region,
-                    str(before_start),
-                    str(before_end),
-                    str(after_start),
-                    str(after_end),
-                    export=False)
-                empty_text.text("Done")
-                with tab2:        
-                    st.title("Flood Map Output")
-                    Map = geemap.Map(
-                        basemap="HYBRID",
-                        plugin_Draw=True,
-                        Draw_export=True,
-                        locate_control=True,
-                        plugin_LatLngPopup=False,
-                        )
-                    Map.add_layer(detected_flood_vector, {}, "Flood extent vector")
-                    Map.add_layer(detected_flood_raster, {}, "Flood extent raster")
-                    Map.centerObject(detected_flood_vector)
-                    Map.to_streamlit()
-                    # with open(file_path, 'rb') as my_file:
-# st.button(label = 'Download', data = my_file, file_name = 'filename.xlsx')       
+    with tab2:
+        st.header("Flood Map Output")
+        with st.sidebar.form(key="my_form2"):
+            empty_text = st.empty()
+            submitted = st.form_submit_button('Compute flood extent')
+            if submitted:
+                if data is None:
+                    empty_text.text("No data, please select a region..")
+                    # empty_text.text("No region selected")
+                else:
+                    empty_text.text("Computing... Please wait...")
+                    ee_geom_region = ee.Geometry.Polygon(coords)
+                    detected_flood_vector, detected_flood_raster, before_imagery, after_imagery = derive_flood_extents(
+                        ee_geom_region,
+                        str(before_start),
+                        str(before_end),
+                        str(after_start),
+                        str(after_end),
+                        export=False)
+                    empty_text.text("Done")
+                    # detected_flood_vector_geojson = geemap.ee_to_geojson(detected_flood_vector)
+                    # st.json(detected_flood_vector_geojson, expanded=True)
+                    # st.download_button(label='Download Image',
+                    #     data= open('detected_flood_vector_geojson', 'rb').read(),
+                    #     file_name='imagename.png',
+                    #     mime='image/png')
+                    with tab2:        
+                        Map = geemap.Map(
+                            basemap="HYBRID",
+                            plugin_Draw=True,
+                            Draw_export=True,
+                            locate_control=True,
+                            plugin_LatLngPopup=False,
+                            )
+                        Map.add_layer(detected_flood_vector, {}, "Flood extent vector")
+                        Map.add_layer(detected_flood_raster, {}, "Flood extent raster")
+                        Map.centerObject(detected_flood_vector)
+                        Map.to_streamlit()
+        #             out_dir = os.path.join(os.path.expanduser('~'), 'Downloads')
+        #             # st.download_button('output',)
+        #             st.download_button(
+        #                     label="Download image",
+        #                     data=geemap.ee_to_df(detected_flood_vector),
+        #                     file_name="flower.png",
+        #                     mime="image/png"
+        #    )
 app()
 
