@@ -159,6 +159,9 @@ def app():
                         Map.add_layer(detected_flood_raster, {}, "Flood extent raster")
                         Map.centerObject(detected_flood_vector)
                         Map.to_streamlit()
+                        # out_dir = os.path.expanduser('~/Downloads')
+                        # out_shp = os.path.join(out_dir, 'countries.shp')
+                        # st.download_button('download' , geemap.ee_to_shp(detected_flood_vector, filename=out_shp))
         #             out_dir = os.path.join(os.path.expanduser('~'), 'Downloads')
         #             # st.download_button('output',)
         #             st.download_button(
