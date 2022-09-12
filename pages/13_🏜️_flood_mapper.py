@@ -123,6 +123,7 @@ def app():
 # export_option = st.selectbox("Export to Google Drive (Yes/No)", datasets.keys(), index=0)
     with tab2:
         st.header("Flood Map Output")
+        st.write("Please run \"compute flood extent\" before checking output..")
         with st.sidebar.form(key="my_form2"):
             empty_text = st.empty()
             submitted = st.form_submit_button('Compute flood extent')
