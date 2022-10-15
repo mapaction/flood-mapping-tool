@@ -140,7 +140,7 @@ def app():
                     str(before_end),
                     str(after_start),
                     str(after_end),
-                    difference_threshold=add_slider,
+                    difference_threshold=1,
                     export=False)
                 empty_text.text("Done")
                 with col2:        
