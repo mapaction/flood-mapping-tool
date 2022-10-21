@@ -255,7 +255,7 @@ def app():
         m.add_basemap("ROADMAP")
 
     with row1_col2:
-
+        
         keyword = st.text_input("Search for a location:", "")
         if keyword:
             locations = geemap.geocode(keyword)
