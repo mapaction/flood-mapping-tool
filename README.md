@@ -21,9 +21,17 @@ pip install plotly_express
 
 sudo apt-get install tmux
 
-tmux new -s StreamSession
+tmux new -s streamlit-app-session
 
 streamlit run streamlit_app.py
 
+#Ctrl+B and then D
+
+```
+
+If reconenction to streamlit-app-session is required run: 
+
+```
+tmux attach -t streamlit-app-session
 ```
 
