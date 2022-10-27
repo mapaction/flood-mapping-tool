@@ -19,6 +19,9 @@ pip install streamlit
 
 pip install plotly_express
 
+#install the project dependencies from requirements
+pip install -r requirements.txt
+
 sudo apt-get install tmux
 
 tmux new -s streamlit-app-session
