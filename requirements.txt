@@ -1,0 +1,6 @@
+earthengine-api
+folium
+geemap
+streamlit
+streamlit_ext
+streamlit-folium

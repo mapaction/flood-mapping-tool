@@ -13,7 +13,7 @@ from sidebar_functions import add_logo, add_about
 
 st.set_page_config(layout="wide")
 
-add_logo("MA-logo.png")
+add_logo("img/MA-logo.png")
 add_about()
 st.markdown("# Flood extent analysis")
 
@@ -62,7 +62,7 @@ def app():
     # st.header("Flood extent detection tool")
     row1 = st.container()
     row2 = st.container()
-    col1, col2 = row1.columns(2)
+    col1, col2 = row1.columns([2, 1])
     with col1:
         with st.expander("Input map", expanded=True):
             Map = folium.Map(
@@ -86,13 +86,13 @@ def app():
                 add_marker=False
             ).add_to(Map)
             MiniMap().add_to(Map)
-            data = st.file_uploader(
-                "Upload a GeoJSON file to use as an ROI.",
-                type=["geojson", "kml", "zip"],
-            )
+            # data = st.file_uploader(
+            #     "Upload a GeoJSON file to use as an ROI.",
+            #     type=["geojson", "kml", "zip"],
+            # )
             # ss = st.empty()
             # with ss:
-            output = st_folium(Map, width = 550, height=600)
+            output = st_folium(Map, width = 800, height=600)
             # if data is not None:
             #     with ss:
             #         # gj = geojson.load(data)
@@ -140,11 +140,11 @@ def app():
                 help='higher value might reduce overall noise',
                 on_change=callback
                 )
-            polarization = st.radio(
-                "Set polarization",
-                ["VH", "VV"],
-                on_change=callback
-                )
+            # polarization = st.radio(
+            #     "Set polarization",
+            #     ["VH", "VV"],
+            #     on_change=callback
+            #     )
             pass_direction = st.radio(
                 "Set pass direction",
                 ["Ascending", "Descending"],
@@ -174,7 +174,7 @@ def app():
                         after_start_date=str(after_start),
                         after_end_date=str(after_end),
                         difference_threshold=add_slider,
-                        polarization=polarization,
+                        polarization='VH',
                         pass_direction=pass_direction,#pass_direction,
                         export=False)
                     # output_markdown("Detection complete")                  

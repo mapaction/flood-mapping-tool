@@ -1,5 +1,6 @@
 import base64
 import streamlit as st
+from datetime import date
 
 @st.cache(allow_output_mutation=True)
 def get_base64_of_bin_file(png_file):
@@ -53,18 +54,79 @@ def add_logo(png_file):
     )
 
 def add_about():
-    st.sidebar.title("About")
-    st.sidebar.info(
-        """
-        Web App URL: <https://geospatial.streamlitapp.com>
-        GitHub repository: <https://github.com/mapaction/flood-extent-tool>
-        """
-    )
 
-    st.sidebar.title("Contacts")
-    st.sidebar.info(
-        """
-        Piet: <pgerrits@mapaction.org>\n
-        Daniele: <dcastellana@mapaction.org>
-        """
-    )
+    today = date.today().strftime("%B %d, %Y")
+
+    st.sidebar.markdown("## About")
+    st.sidebar.markdown(
+        "<div class='warning' "
+        "style='background-color:#dae7f4; "
+        "margin: 0px; "
+        "padding: 1em;'>"
+        "<p style='margin-left:1em; "
+        "margin: 0px; "
+        "margin-bottom: 1em;'>"
+        "Last update: "
+        f"{today}"
+        "</p>"
+        "<p "
+        "style='margin-left:1em; "
+        "margin: 0px'>"
+        "<a href='"
+        "https://mapaction.atlassian.net/wiki/spaces/GAFO/pages/15920922751/Rapid+flood+mapping+from+satellite+imagery"
+        "'>"
+        "Wiki reference page"
+        "</a><br>"
+        "<a href='"
+        "https://github.com/mapaction/flood-extent-tool"
+        "'>"
+        "GitHub repository"
+        "</a><br>"
+        "<a href='"
+        "https://mapaction.atlassian.net/wiki/spaces/GAFO/overview"
+        "'>"
+        "Data Science Lab"
+        "</a>"
+        "</p>"
+        "</div>",
+        unsafe_allow_html=True
+        )
+ 
+
+    st.sidebar.markdown("## Contacts")
+    st.sidebar.markdown(
+        "<div class='warning' "
+        "style='background-color:#dae7f4; "
+        "margin: 0px; "
+        "padding: 1em;'>"
+        "<p "
+        "style='margin-left:1em; "
+        # "font-size: larger; "
+        "margin: 0px'>"
+        "Piet:"
+        "<span "
+        "style='float:right; "
+        "margin-right: 2%;'>"
+        "<a href='mailto:pgerrits@mapaction.org'>pgerrits@mapaction.org</a>"
+        "</span>"
+        "<br>"
+        "Daniele: "
+        "<span "
+        "style='float:right; "
+        "margin-right: 2%;'>"
+        "<a href='mailto:dcastellana@mapaction.org'>dcastellana@mapaction.org</a>"
+        "</span>"
+        "<br>"
+        "Cate: "
+        "<span "
+        "style='float:right; "
+        "margin-right: 2%;'>"
+        "<a href='mailto:cseale@mapaction.org'>cseale@mapaction.org</a>"
+        "</span>"
+        "<br>"
+        "</p>"
+        "</div>",
+        unsafe_allow_html=True
+        )
+        
+        
