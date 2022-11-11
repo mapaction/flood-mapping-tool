@@ -3,22 +3,41 @@ from sidebar_functions import add_logo, add_about
 
 st.set_page_config(layout="wide")
 
+fontsize='1.2rem'
+
 add_logo("img/MA-logo.png")
 add_about()
 st.markdown("# Introduction")
 
 st.markdown(
+    "<p style='font-size:"
+    f'{fontsize}'
+    ";'>"
     'This tool allows to estimate flood extent using Sentinel-1 '
     'synthetic-aperture radar '
-    '([SAR](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar)) '
+    "<a href='"
+    "https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar"
+    "'>"
+    "SAR"
+    "</a> "
     'data.<br><br>'
-    'The methodology is based on a recommended practice published by the '
+    'The methodology is based on a '
+    "<a href='"
+    "https://un-spider.org/advisory-support/recommended-practices/recommended-practice-google-earth-engine-flood-mapping"
+    "'>"
+    "recommended practice"
+    "</a> "
+    'published by the '
     'United Nations Platform for Space-based Information for Disaster '
-    'Management and Emergency Response ([UN-SPIDER]'
-    '(https://un-spider.org/advisory-support/recommended-practices/recommended-practice-google-earth-engine-flood-mapping)'
-    ') and it uses several '
+    'Management and Emergency Response (UN-SPIDER) '
+    'and it uses several '
     'satellite imagery datasets to produce the final output. The procedure '
-    'uses [Google Earth Engine](https://earthengine.google.com/), '
+    'uses '
+    "<a href='"
+    "https://earthengine.google.com/"
+    "'>"
+    "Google Earth Engine"
+    "</a> "
     'which is a powerful web-platform for '
     'cloud-based processing of remote sensing data on large scales. More '
     'information on the methodology is given in the Description.<br><br>'
@@ -28,7 +47,8 @@ st.markdown(
     'meant for broad information provision in '
     'a global context, and contains inherent uncertainties. Therefore, it '
     'is important that this tool not be used as the only source of information '
-    'for rescue response planning.', 
+    'for rescue response planning.'
+    '</p>', 
     unsafe_allow_html=True
 )
 
@@ -36,13 +56,29 @@ st.markdown('## How to use the tool')
 
 st.markdown(
     '<ul>'
-    '<li> In the left panel, use the drawing tool to select an area of '
+    '<li>'
+    "<p style='font-size:"
+    f'{fontsize}'
+    ";'>"
+    'In the sidebar, choose <i>Flood extent analysis</i> to start using the '
+    'tool.'
+    '</p>'
+    '<li>'
+    "<p style='font-size:"
+    f'{fontsize}'
+    ";'>"
+    'In the left panel, use the drawing tool to select an area of '
     'interest on the map. You can also delete your selection by clicking on '
     'the bin icon. While the flood mapping is generated regardless of the '
     'size of the selected region, you will be able to save raster and vector '
     'flooding extent only if the side of the rectangular selection does not '
     'exceed 100 km.'
-    '<li> In the right panel click on the title <i>Choose Image Dates</i> '
+    '</p>'
+    '<li>'
+    "<p style='font-size:"
+    f'{fontsize}'
+    ";'>"
+    'In the right panel click on the title <i>Choose Image Dates</i> '
     'in order to expand the section. Here you need to select four dates.'
     'The first two identify a range of dates based on which the reference '
     'imagery (before the flooding event) is defined. You can select even years '
@@ -54,10 +90,20 @@ st.markdown(
     'tiles to cover the area of interest. Sentinel-1 imagery is acquired '
     'minimum every 12 days for each point on the globe (see Figure 2 in the '
     'documentation).'
-    '<li> By clicking on <i>Choose parameters</i>, you will be able to set two '
+    '</p>'
+    '<li>'
+    "<p style='font-size:"
+    f'{fontsize}'
+    ";'>"
+    'By clicking on <i>Choose parameters</i>, you will be able to set two '
     'variables:'
+    '</p>'
     '<ul>'
-    '<li>The <i>threshold</i> is the value against which the difference '
+    '<li>'
+    "<p style='font-size:"
+    f'{fontsize}'
+    ";'>"
+    'The <i>threshold</i> is the value against which the difference '
     'the two satellite images - before and after the flooding event - is '
     'tested. Lower thresholds result in a greater area considered "flooded".' 
     'It is recommended to set the value to 1.25, which was selected through '
@@ -65,22 +111,42 @@ st.markdown(
     'of false positive or negative values, especially in case other sources '
     'of information are available and it is possible to compare flood extent '
     'estimations between sources.'
-    '<li>The <i>pass direction</i> has to do with the way the satellite '
+    '</p>'
+    '<li>'
+    "<p style='font-size:"
+    f'{fontsize}'
+    ";'>"
+    'The <i>pass direction</i> has to do with the way the satellite '
     'travels around the Earth. Depending on your area of interest and time '
     'period, you may find more imagery available for either the <i>Ascending</i>' 
     'or <i>Descending</i> pass directions (see Figure 2 in the Documentation). '
     'It is recommended to leave the parameter unchanged for a first estimation '
     'and change its value in case partial or no imagery is produced.'
+    '</p>'
     '</ul>'
-    '<li>Once the parameters are set, you can finally click on <i>Compute flood '
+    '<li>'
+    "<p style='font-size:"
+    f'{fontsize}'
+    ";'>"
+    'Once the parameters are set, you can finally click on <i>Compute flood '
     'extent</i> to run the calculations. An map will appear underneath, with a '
     'layer containing the flooded area within the area of interest. '
-    '<li>If you '
+    '</p>'
+    '<li>'
+    "<p style='font-size:"
+    f'{fontsize}'
+    ";'>"
+    'If you '
     'wish to export the layer to file, you can click on <i>Export to file</i> '
     'and download the raster and/or vector data.'
+    '</p>'
     '</ul>'
+    "<p style='font-size:"
+    f'{fontsize}'
+    ";'>"
     'In case you get errors, follow the intructions. If you have doubts, feel '
-    'free to contact the Data Science team.',
+    'free to contact the Data Science team.'
+    '</p>',
     unsafe_allow_html=True
     )
 
