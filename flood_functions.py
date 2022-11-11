@@ -202,7 +202,7 @@ def mask_permanent_water(image):
     """
 
     surface_water = ee.Image(
-        'JRC/GSW1_3/GlobalSurfaceWater'
+        'JRC/GSW1_4/GlobalSurfaceWater'
         ).select('seasonality')
     surface_water_mask = surface_water.gte(10).updateMask(surface_water.gte(10))
 
