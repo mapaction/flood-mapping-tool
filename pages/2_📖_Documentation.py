@@ -2,6 +2,7 @@
 import streamlit as st
 from PIL import Image
 
+from config_parameters import config
 from sidebar_functions import add_about, add_logo
 
 # Page configuration
@@ -13,7 +14,8 @@ add_about()
 
 # Set fontisize text
 st.markdown(
-    "<style>" "p { font-size: 1.2rem; }" "</style>", unsafe_allow_html=True
+    "<style>" "p { font-size: " f"{config['docs_fontsize']}" "; }" "</style>",
+    unsafe_allow_html=True,
 )
 
 # Page title
@@ -22,9 +24,6 @@ st.markdown("# Documentation")
 # First section
 st.markdown("## Methodology")
 st.markdown(
-    # "<p style='font-size:"
-    # f'{fontsize}'
-    # ";'>"
     "The methodology is based on the workflow depicted in Figure 1. In "
     "addition to Sentinel-1 "
     "synthetic-aperture radar "

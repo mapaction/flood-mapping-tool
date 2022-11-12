@@ -10,6 +10,7 @@ import streamlit_ext as ste
 from folium.plugins import Draw, Geocoder, MiniMap
 from streamlit_folium import st_folium
 
+from config_parameters import config
 from flood_functions import derive_flood_extents
 from sidebar_functions import add_about, add_logo
 
@@ -25,28 +26,40 @@ st.markdown("# Flood extent analysis")
 
 # Set styles for text fontsize and buttons
 st.markdown(
-    """
-<style>
-.streamlit-expanderHeader {
-    font-size: 23px;
-    color: #000053;
-}
-.stDateInput > label {
-    font-size:18px;
-}
-.stSlider > label {
-    font-size:18px;
-}
-.stRadio > label {
-    font-size:18px;
-}
-.stButton > button {
-    font-size:24px;
-    font-weight:bold;
-    background-color:#dae7f4;
-}
-</style>
-""",
+    "<style>"
+    ".streamlit-expanderHeader {"
+    "font-size: "
+    f"{config['expander_header_fontsize']}"
+    ";"
+    "color: #000053;"
+    "}"
+    ".stDateInput > label {"
+    "font-size:"
+    f"{config['widget_header_fontsize']}"
+    ";"
+    "}"
+    ".stSlider > label {"
+    "font-size:"
+    f"{config['widget_header_fontsize']}"
+    ";"
+    "}"
+    ".stRadio > label {"
+    "font-size:"
+    f"{config['widget_header_fontsize']}"
+    ";"
+    "}"
+    ".stButton > button {"
+    "font-size:"
+    f"{config['button_text_fontsize']}"
+    ";"
+    "font-weight:"
+    f"{config['button_text_fontweight']}"
+    ";"
+    "background-color:"
+    f"{config['button_background_color']}"
+    ";"
+    "}"
+    "</style>",
     unsafe_allow_html=True,
 )
 

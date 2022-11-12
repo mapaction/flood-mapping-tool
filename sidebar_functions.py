@@ -4,6 +4,10 @@ from datetime import date
 
 import streamlit as st
 
+from config_parameters import config
+
+sidebar_title = "Flood Mapping Tool"
+
 
 @st.cache(allow_output_mutation=True)
 def get_base64_of_bin_file(png_file):
@@ -22,7 +26,12 @@ def get_base64_of_bin_file(png_file):
 
 
 def build_markup_for_logo(
-    png_file, background_position="35% 10%", image_width="60%", image_height=""
+    png_file,
+    background_position=f"{config['MA_logo_background_position']}",
+    image_width=f"{config['MA_logo_width']}",
+    image_height="",
+    sidebar_header_fontsize=config["sidebar_header_fontsize"],
+    sidebar_header_fontweight=config["sidebar_header_fontweight"],
 ):
     """
     Create full string for navigation bar, including logo and title.
@@ -48,13 +57,13 @@ def build_markup_for_logo(
                     background-size: %s %s;
                 }
                 [data-testid="stSidebarNav"]::before {
-                    content: "Flood Mapping Tool";
+                    content: %s;
                     margin-left: 20px;
                     margin-top: 20px;
                     margin-bottom: 20px;
                     padding-bottom: 50px;
-                    font-size: 30px;
-                    font-weight: bold;
+                    font-size: %s;
+                    font-weight: %s;
                     position: relative;
                     top: 85px;
                 }
@@ -64,6 +73,9 @@ def build_markup_for_logo(
         background_position,
         image_width,
         image_height,
+        sidebar_title,
+        sidebar_header_fontsize,
+        sidebar_header_fontweight,
     )
 
 
@@ -97,17 +109,21 @@ def add_about():
     st.sidebar.markdown("## About")
     st.sidebar.markdown(
         "<div class='warning' "
-        "style='background-color:#dae7f4; "
+        "style='background-color:"
+        f"{config['about_box_background_color']}"
+        "; "
         "margin: 0px; "
         "padding: 1em;'>"
         "<p style='margin-left:1em; "
         "margin: 0px; "
+        "font-size: 1rem; "
         "margin-bottom: 1em;'>"
         "Last update: "
         f"{today}"
         "</p>"
         "<p "
         "style='margin-left:1em; "
+        "font-size: 1rem; "
         "margin: 0px'>"
         "<a href='"
         "https://mapaction.atlassian.net/wiki/spaces/GAFO/pages/15920922751/"
@@ -139,7 +155,7 @@ def add_about():
         "padding: 1em;'>"
         "<p "
         "style='margin-left:1em; "
-        # "font-size: larger; "
+        "font-size: 1rem; "
         "margin: 0px'>"
         "Piet:"
         "<span "
