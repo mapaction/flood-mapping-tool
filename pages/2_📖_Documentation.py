@@ -10,7 +10,12 @@ add_logo("img/MA-logo.png")
 add_about()
 
 # Set fontisize text
-fontsize='1.2rem'
+st.markdown(
+    '<style>'
+    'p { font-size: 1.2rem; }'
+    '</style>',
+    unsafe_allow_html=True
+)
 
 # Page title
 st.markdown("# Documentation")
@@ -18,9 +23,9 @@ st.markdown("# Documentation")
 # First section
 st.markdown("## Methodology")
 st.markdown(
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    # "<p style='font-size:"
+    # f'{fontsize}'
+    # ";'>"
     'The methodology is based on the workflow depicted in Figure 1. In '
     'addition to Sentinel-1 '
     'synthetic-aperture radar '
@@ -36,10 +41,7 @@ st.markdown(
     "Google Earth Engine"
     "</a>:"
     '<ul>'
-    '<li>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<li><p>'
     'The <i>WWF HydroSHEDS Void-Filled DEM, 3 Arc-Seconds</i> '
     "<a href='"
     "https://developers.google.com/earth-engine/datasets/catalog/WWF_HydroSHEDS_03VFDEM"
@@ -50,10 +52,7 @@ st.markdown(
     'Topography Mission (SRTM), and it is used to mask out areas with more '
     'than 5 percent slope (see following section on limitations).'
     '</p>'
-    '<li>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<li><p>'
     'The <i>JRC Global Surface Water Mapping Layers, v1.4</i> '
     "<a href='"
     "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater"
@@ -65,8 +64,7 @@ st.markdown(
     '2021, and it is used to mask areas with perennial water bodies, such as '
     'rivers or lakes.'
     '</p>'
-    '</ul>'
-    '</p>',
+    '</ul>',
     unsafe_allow_html=True
 )
 
@@ -84,9 +82,6 @@ st.image(
 # Second section
 st.markdown('## Radar imagery for flood detection')
 st.markdown(
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
     'While there are multiple change detections techniques for radar imagery, '
     'the one used by Sentinel-1 is one of the simplest. Active radar '
     'satellites produce active radiation directed at the land, and images are '
@@ -119,8 +114,7 @@ st.markdown(
     'partially submerged features. This tool uses VH polarization. Figure 2 '
     'shows an overview of the '
     'Sentinel-1 observation plan, where pass directions and coverage '
-    'frequencies are highlighted.'
-    '</p>',
+    'frequencies are highlighted.',
     unsafe_allow_html=True
 )
 
@@ -137,9 +131,6 @@ st.image(
 # Third section
 st.markdown('## Key limtations')
 st.markdown(
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
     'Radar imagery is great for detecting floods, as it is good at picking up '
     'water and it is '
     'not affected by the time of the day or clouds (at this wavelength). But '
@@ -150,8 +141,7 @@ st.markdown(
     'which can cause image distortions. This method may also result in false '
     'positives for other land cover changes with smooth surfaces, such as '
     'roads and sand. Rough surface texture caused by wind or rainfall may also '
-    'make it challenging for the radar imagery to identify water bodies.'
-    '</p>',
+    'make it challenging for the radar imagery to identify water bodies.',
     unsafe_allow_html=True
 )
 
@@ -164,9 +154,6 @@ url_paper_2 = 'https://www.sciencedirect.com/science/article/abs/pii/S0924271620
 # Last section
 st.markdown("## Useful links")
 st.markdown(
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
     "<a href='"
     f"{url_spider}"
     "'>"
@@ -187,7 +174,6 @@ st.markdown(
     f"{url_paper_2}"
     "'>"
     "2"
-    "</a><br>"
-    '</p>',
+    "</a><br>",
     unsafe_allow_html=True
     )

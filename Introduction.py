@@ -9,16 +9,18 @@ add_logo("img/MA-logo.png")
 add_about()
 
 # Set fontisize text
-fontsize='1.2rem'
+st.markdown(
+    '<style>'
+    'p { font-size: 1.2rem; }'
+    '</style>',
+    unsafe_allow_html=True
+)
 
 # Page title
 st.markdown("# Introduction")
 
 # First section (no header)
 st.markdown(
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
     'This tool allows to estimate flood extent using Sentinel-1 '
     'synthetic-aperture radar '
     "<a href='"
@@ -62,17 +64,11 @@ st.markdown(
 st.markdown('## How to use it')
 st.markdown(
     '<ul>'
-    '<li>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<li><p>'
     'In the sidebar, choose <i>Flood extent analysis</i> to start the '
     'analysis.'
     '</p>'
-    '<li>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<li><p>'
     'In the left panel, use the drawing tool to select an area of '
     'interest on the map. You can delete your selection by clicking on '
     'the bin icon. While the flood mapping is generated regardless of the '
@@ -80,10 +76,7 @@ st.markdown(
     'flooding extent only if the side of the rectangular selection does not '
     'exceed 100 km.'
     '</p>'
-    '<li>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<li><p>'
     'In the right panel click on the title <i>Choose Image Dates</i> '
     'in order to expand the section. Here you need to select four dates. '
     'The first two identify a range of dates based on which the reference '
@@ -97,18 +90,12 @@ st.markdown(
     'minimum every 12 days for each point on the globe (see Figure 2 in the '
     'documentation).'
     '</p>'
-    '<li>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<li><p>'
     'By clicking on <i>Choose parameters</i>, you will be able to set two '
     'variables:'
     '</p>'
     '<ul>'
-    '<li>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<li><p>'
     'The <i>threshold</i> is the value against which the difference '
     'the two satellite images - before and after the flooding event - is '
     'tested. Lower thresholds result in a greater area considered "flooded". ' 
@@ -118,10 +105,7 @@ st.markdown(
     'of information are available and it is possible to compare flood extent '
     'estimations between sources.'
     '</p>'
-    '<li>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<li><p>'
     'The <i>pass direction</i> has to do with the way the satellite '
     'travels around the Earth. Depending on your area of interest and time '
     'period, you may find more imagery available for either the '
@@ -132,26 +116,18 @@ st.markdown(
     'and change its value in case partial or no imagery is produced.'
     '</p>'
     '</ul>'
-    '<li>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<li><p>'
     'Once the parameters are set, you can finally click on <i>Compute flood '
     'extent</i> to run the calculations. A map will appear underneath, with a '
     'layer containing the flooded area within the area of interest. '
     '</p>'
-    '<li>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<li><p>'
     'If you '
     'wish to export the layer to file, you can click on <i>Export to file</i> '
     'and download the raster and/or vector data.'
     '</p>'
     '</ul>'
-    "<p style='font-size:"
-    f'{fontsize}'
-    ";'>"
+    '<p>'
     'In case you get errors, follow the intructions. If you have doubts, feel '
     'free to contact the Data Science team.'
     '</p>',
