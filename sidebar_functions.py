@@ -1,33 +1,31 @@
+"""Functions for the sidebar of the Streamlit app."""
 import base64
-import streamlit as st
 from datetime import date
+
+import streamlit as st
 
 
 @st.cache(allow_output_mutation=True)
 def get_base64_of_bin_file(png_file):
     """
-    Get base64 from image file
+    Get base64 from image file.
 
     Inputs:
         png_file (str): image filename
-    
+
     Returns:
         str: encoded ASCII file
     """
-
     with open(png_file, "rb") as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
 
 def build_markup_for_logo(
-    png_file,
-    background_position="35% 10%",
-    image_width="60%",
-    image_height=""
-    ):
+    png_file, background_position="35% 10%", image_width="60%", image_height=""
+):
     """
-    Create full string for navigation bar, including logo and title
+    Create full string for navigation bar, including logo and title.
 
     Inputs:
         png_file (str): image filename
@@ -38,7 +36,6 @@ def build_markup_for_logo(
     Returns
         str: full string with logo and title for sidebar
     """
-
     binary_string = get_base64_of_bin_file(png_file)
     return """
             <style>
@@ -66,20 +63,19 @@ def build_markup_for_logo(
         binary_string,
         background_position,
         image_width,
-        image_height
+        image_height,
     )
 
 
 def add_logo(png_file):
     """
-    Add logo to sidebar
+    Add logo to sidebar.
 
     Inputs:
         png_file (str): image filename
     Returns:
         None
     """
-
     logo_markup = build_markup_for_logo(png_file)
     st.markdown(
         logo_markup,
@@ -89,14 +85,13 @@ def add_logo(png_file):
 
 def add_about():
     """
-    Add about and contacts to sidebar
+    Add about and contacts to sidebar.
 
     Inputs:
         None
     Returns:
         None
     """
-
     today = date.today().strftime("%B %d, %Y")
 
     st.sidebar.markdown("## About")
@@ -115,7 +110,8 @@ def add_about():
         "style='margin-left:1em; "
         "margin: 0px'>"
         "<a href='"
-        "https://mapaction.atlassian.net/wiki/spaces/GAFO/pages/15920922751/Rapid+flood+mapping+from+satellite+imagery"
+        "https://mapaction.atlassian.net/wiki/spaces/GAFO/pages/15920922751/"
+        "Rapid+flood+mapping+from+satellite+imagery"
         "'>"
         "Wiki reference page"
         "</a><br>"
@@ -131,9 +127,9 @@ def add_about():
         "</a>"
         "</p>"
         "</div>",
-        unsafe_allow_html=True
-        )
- 
+        unsafe_allow_html=True,
+    )
+
     st.sidebar.markdown(" ")
     st.sidebar.markdown("## Contacts")
     st.sidebar.markdown(
@@ -156,7 +152,8 @@ def add_about():
         "<span "
         "style='float:right; "
         "margin-right: 2%;'>"
-        "<a href='mailto:dcastellana@mapaction.org'>dcastellana@mapaction.org</a>"
+        "<a href='mailto:dcastellana@mapaction.org'>"
+        "dcastellana@mapaction.org</a>"
         "</span>"
         "<br>"
         "Cate: "
@@ -168,5 +165,5 @@ def add_about():
         "<br>"
         "</p>"
         "</div>",
-        unsafe_allow_html=True
-        )
+        unsafe_allow_html=True,
+    )
