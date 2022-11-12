@@ -10,6 +10,16 @@ The methodology is based on a <a href='https://un-spider.org/advisory-support/re
 
 This analysis provides a comprehensive overview of a flooding event, across different areas of interest, from settlements to countries. However, as mentioned in the UN-SPIDER website, the methodology is meant for broad information provision in a global context, and contains inherent uncertainties. Therefore, it is important that the tool is not used as the only source of information for rescue response planning.
 
+## Usage
+
+Open a terminal and run
+
+```shell
+streamlit run Introduction.py
+```
+
+A new browser window will open and you can start using the tool.
+
 ## Development
 
 #### Installation
