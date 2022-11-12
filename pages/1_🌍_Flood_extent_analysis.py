@@ -56,8 +56,8 @@ def app():
     # output map should be visualised or not
     if "output_created" not in st.session_state:
         st.session_state.output_created = False
-    # Function to be used to hide bottom panel (when setting parameters) for a
-    # new analysis
+    # Function to be used to hide bottom panel (when setting parameters for a
+    # new analysis)
     def callback():
         st.session_state.output_created = False
     # Create two rows: top and bottom panel
