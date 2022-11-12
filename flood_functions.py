@@ -63,10 +63,13 @@ def export_flood_data(
     Exports the results of derive_flood_extents function to Google Drive.
 
     Inputs:
-        flooded_area_vector (ee.FeatureCollection): Detected flood extents as vector geometries.
-        flooded_area_raster (ee.Image): Detected flood extents as a binary raster.
+        flooded_area_vector (ee.FeatureCollection): Detected flood extents as
+            vector geometries.
+        flooded_area_raster (ee.Image): Detected flood extents as a binary 
+            raster.
         image_before_flood (ee.Image): The 'before' Sentinel-1 image.
-        image_after_flood (ee.Image): The 'after' Sentinel-1 image containing view of the flood waters.
+        image_after_flood (ee.Image): The 'after' Sentinel-1 image containing 
+            view of the flood waters.
         region (ee.Geometry.Polygon): Geographic extent of analysis area.
         filename (str): Desired filename prefix for exported files
 
@@ -74,7 +77,9 @@ def export_flood_data(
         None
     """
 
-    print('Exporting detected flood extents to your Google Drive. Please wait...')
+    print(
+        'Exporting detected flood extents to your Google Drive. Please wait...'
+        )
 
     s1_before_task = ee.batch.Export.image.toDrive(
         image=image_before_flood,
@@ -225,7 +230,7 @@ def reduce_noise(image):
 
     Returns:
         reduced_noise_image (ee.Image): The resulting image after noise 
-        reduction is applied.
+            reduction is applied.
     """
 
     connections = image.connectedPixelCount()
@@ -243,7 +248,7 @@ def mask_slopes(image):
         image (ee.Image): Input image.
     Returns:
          slopes_masked (ee.Image): The resulting image after slope masking is 
-         applied.
+            applied.
     """
 
     dem = ee.Image('WWF/HydroSHEDS/03VFDEM')

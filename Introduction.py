@@ -1,14 +1,20 @@
 import streamlit as st
 from sidebar_functions import add_logo, add_about
 
+# Page configuration
 st.set_page_config(layout="wide")
 
-fontsize='1.2rem'
-
+# Create sidebar
 add_logo("img/MA-logo.png")
 add_about()
+
+# Set fontisize text
+fontsize='1.2rem'
+
+# Page title
 st.markdown("# Introduction")
 
+# First section (no header)
 st.markdown(
     "<p style='font-size:"
     f'{fontsize}'
@@ -31,8 +37,8 @@ st.markdown(
     'United Nations Platform for Space-based Information for Disaster '
     'Management and Emergency Response (UN-SPIDER) '
     'and it uses several '
-    'satellite imagery datasets to produce the final output. The procedure '
-    'uses '
+    'satellite imagery datasets to produce the final output. The datasets '
+    'are retrieved from '
     "<a href='"
     "https://earthengine.google.com/"
     "'>"
@@ -41,34 +47,34 @@ st.markdown(
     'which is a powerful web-platform for '
     'cloud-based processing of remote sensing data on large scales. More '
     'information on the methodology is given in the Description.<br><br>'
-    'This tool provides a comprehensive overview of a flooding event, '
-    'across different areas of interest, from settlements to countries.'
+    'This ana;ysis provides a comprehensive overview of a flooding event, '
+    'across different areas of interest, from settlements to countries. '
     'However, as mentioned in the UN-SPIDER website, the methodology is '
     'meant for broad information provision in '
     'a global context, and contains inherent uncertainties. Therefore, it '
-    'is important that this tool not be used as the only source of information '
+    'is important that the tool is not used as the only source of information '
     'for rescue response planning.'
     '</p>', 
     unsafe_allow_html=True
 )
 
-st.markdown('## How to use the tool')
-
+# Second section
+st.markdown('## How to use it')
 st.markdown(
     '<ul>'
     '<li>'
     "<p style='font-size:"
     f'{fontsize}'
     ";'>"
-    'In the sidebar, choose <i>Flood extent analysis</i> to start using the '
-    'tool.'
+    'In the sidebar, choose <i>Flood extent analysis</i> to start the '
+    'analysis.'
     '</p>'
     '<li>'
     "<p style='font-size:"
     f'{fontsize}'
     ";'>"
     'In the left panel, use the drawing tool to select an area of '
-    'interest on the map. You can also delete your selection by clicking on '
+    'interest on the map. You can delete your selection by clicking on '
     'the bin icon. While the flood mapping is generated regardless of the '
     'size of the selected region, you will be able to save raster and vector '
     'flooding extent only if the side of the rectangular selection does not '
@@ -79,7 +85,7 @@ st.markdown(
     f'{fontsize}'
     ";'>"
     'In the right panel click on the title <i>Choose Image Dates</i> '
-    'in order to expand the section. Here you need to select four dates.'
+    'in order to expand the section. Here you need to select four dates. '
     'The first two identify a range of dates based on which the reference '
     'imagery (before the flooding event) is defined. You can select even years '
     'worth of data (the reference imagery is calculated as the median between '
@@ -105,7 +111,7 @@ st.markdown(
     ";'>"
     'The <i>threshold</i> is the value against which the difference '
     'the two satellite images - before and after the flooding event - is '
-    'tested. Lower thresholds result in a greater area considered "flooded".' 
+    'tested. Lower thresholds result in a greater area considered "flooded". ' 
     'It is recommended to set the value to 1.25, which was selected through '
     'trial and error. You may want to adjust the value in case of high rates '
     'of false positive or negative values, especially in case other sources '
@@ -118,8 +124,10 @@ st.markdown(
     ";'>"
     'The <i>pass direction</i> has to do with the way the satellite '
     'travels around the Earth. Depending on your area of interest and time '
-    'period, you may find more imagery available for either the <i>Ascending</i>' 
-    'or <i>Descending</i> pass directions (see Figure 2 in the Documentation). '
+    'period, you may find more imagery available for either the '
+    '<i>Ascending</i> ' 
+    'or the <i>Descending</i> pass directions (see Figure 2 in the '
+    'Documentation). '
     'It is recommended to leave the parameter unchanged for a first estimation '
     'and change its value in case partial or no imagery is produced.'
     '</p>'
@@ -129,7 +137,7 @@ st.markdown(
     f'{fontsize}'
     ";'>"
     'Once the parameters are set, you can finally click on <i>Compute flood '
-    'extent</i> to run the calculations. An map will appear underneath, with a '
+    'extent</i> to run the calculations. A map will appear underneath, with a '
     'layer containing the flooded area within the area of interest. '
     '</p>'
     '<li>'
@@ -149,4 +157,3 @@ st.markdown(
     '</p>',
     unsafe_allow_html=True
     )
-

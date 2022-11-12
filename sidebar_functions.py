@@ -2,8 +2,19 @@ import base64
 import streamlit as st
 from datetime import date
 
+
 @st.cache(allow_output_mutation=True)
 def get_base64_of_bin_file(png_file):
+    """
+    Get base64 from image file
+
+    Inputs:
+        png_file (str): image filename
+    
+    Returns:
+        str: encoded ASCII file
+    """
+
     with open(png_file, "rb") as f:
         data = f.read()
     return base64.b64encode(data).decode()
@@ -14,7 +25,20 @@ def build_markup_for_logo(
     background_position="35% 10%",
     image_width="60%",
     image_height=""
-):
+    ):
+    """
+    Create full string for navigation bar, including logo and title
+
+    Inputs:
+        png_file (str): image filename
+        background_position (str): position logo
+        image_width (str): width logo
+        image_height (str): height logo
+
+    Returns
+        str: full string with logo and title for sidebar
+    """
+
     binary_string = get_base64_of_bin_file(png_file)
     return """
             <style>
@@ -47,13 +71,31 @@ def build_markup_for_logo(
 
 
 def add_logo(png_file):
+    """
+    Add logo to sidebar
+
+    Inputs:
+        png_file (str): image filename
+    Returns:
+        None
+    """
+
     logo_markup = build_markup_for_logo(png_file)
     st.markdown(
         logo_markup,
         unsafe_allow_html=True,
     )
 
+
 def add_about():
+    """
+    Add about and contacts to sidebar
+
+    Inputs:
+        None
+    Returns:
+        None
+    """
 
     today = date.today().strftime("%B %d, %Y")
 
@@ -92,7 +134,7 @@ def add_about():
         unsafe_allow_html=True
         )
  
-
+    st.sidebar.markdown(" ")
     st.sidebar.markdown("## Contacts")
     st.sidebar.markdown(
         "<div class='warning' "
@@ -128,5 +170,3 @@ def add_about():
         "</div>",
         unsafe_allow_html=True
         )
-        
-        

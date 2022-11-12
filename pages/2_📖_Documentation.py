@@ -1,15 +1,21 @@
 import streamlit as st
-from sidebar_functions import add_logo, add_about
 from PIL import Image
-  
+from sidebar_functions import add_logo, add_about
+
+# Page configuration
 st.set_page_config(layout="wide")
 
-fontsize='1.2rem'
-
+# Create sidebar
 add_logo("img/MA-logo.png")
 add_about()
+
+# Set fontisize text
+fontsize='1.2rem'
+
+# Page title
 st.markdown("# Documentation")
 
+# First section
 st.markdown("## Methodology")
 st.markdown(
     "<p style='font-size:"
@@ -28,7 +34,7 @@ st.markdown(
     "https://earthengine.google.com/"
     "'>"
     "Google Earth Engine"
-    "</a> "
+    "</a>:"
     '<ul>'
     '<li>'
     "<p style='font-size:"
@@ -64,16 +70,18 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Add image workflow
 img = Image.open('img/workflow.png')
 st.image(
     img,
     width=350,
     caption=(
         'Figure 1. Workflow of the flood mapping methodology. Source: '
-        'https://un-spider.org/advisory-support/recommended-practices/recommended-practice-google-earth-engine-flood-mapping/in-detail'
+        'https://un-spider.org/advisory-support/recommended-practices/recommended-practice-google-earth-engine-flood-mapping/in-detail.'
         )
     )
 
+# Second section
 st.markdown('## Radar imagery for flood detection')
 st.markdown(
     "<p style='font-size:"
@@ -96,7 +104,8 @@ st.markdown(
     'so pixels on the image will appear very dark. This very simple change '
     'detection takes a "before" image, and looks for drops in intensity, dark '
     'spots, in the "after" image.<br><br>'
-    'Sentinel-1 is a constellation of two satellites, A and B, passing over '
+    'Sentinel-1 data is the result of measurements from a constellation of two '
+    'satellites, assing over '
     'the same areas following the same orbit on average every 6 days. On '
     'Google Earth Engine, the processing level is Ground Range Detected (GRD), '
     'meaning that it has been detected, multi-looked and projected to ground '
@@ -105,14 +114,17 @@ st.markdown(
     'needed for other applications (interferometry for example). These '
     'satellites emits in different polarizations, and can acquire both single '
     'horizonal or vertical, or dual polarizations. Flood water is best '
-    'detected by using HV or VH, although VV can be effective to identify '
-    'partially submerged features. Figure 2 shows an overview of the '
+    'detected by using VH (vertical transmit and horizontal receive), although '
+    'VV (vertical transmit and vertical receive) can be effective to identify '
+    'partially submerged features. This tool uses VH polarization. Figure 2 '
+    'shows an overview of the '
     'Sentinel-1 observation plan, where pass directions and coverage '
     'frequencies are highlighted.'
     '</p>',
     unsafe_allow_html=True
 )
 
+# Add image satellite overview
 st.image(
     'https://sentinel.esa.int/documents/247904/4748961/Sentinel-1-Repeat-Coverage-Frequency-Geometry-2021.jpg',
     width=1000,
@@ -122,14 +134,17 @@ st.image(
     )
     )
 
+# Third section
 st.markdown('## Key limtations')
 st.markdown(
     "<p style='font-size:"
     f'{fontsize}'
     ";'>"
-    'Radar is great for floods, as it is good at picking up water and it is '
-    'not affected by the time of day or clouds (at this wavelength). But it '
-    'has its limits, and performs actually quite bad if having to detect water '
+    'Radar imagery is great for detecting floods, as it is good at picking up '
+    'water and it is '
+    'not affected by the time of the day or clouds (at this wavelength). But '
+    'it has its limits, and performs actually quite bad if having to detect '
+    'water '
     'in mountainous regions, especially if with narrow valleys, and in urban '
     'areas (urban canyons). The reasons are mainly around the viewing angles, '
     'which can cause image distortions. This method may also result in false '
@@ -140,11 +155,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Links for last section
 url_spider = 'https://un-spider.org/advisory-support/recommended-practices/recommended-practice-google-earth-engine-flood-mapping/step-by-step'
 url_radar = 'https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar'
 url_paper_1 = 'https://onlinelibrary.wiley.com/doi/full/10.1111/jfr3.12303'
 url_paper_2 = 'https://www.sciencedirect.com/science/article/abs/pii/S0924271620301702'
 
+# Last section
 st.markdown("## Useful links")
 st.markdown(
     "<p style='font-size:"
@@ -160,7 +177,7 @@ st.markdown(
     "'>"
     "Sentinel-1 satellite imagery user guide"
     "</a><br>"
-    "Related scientific publications: "
+    "Relevant scientific publications: "
     "<a href='"
     f"{url_paper_1}"
     "'>"
