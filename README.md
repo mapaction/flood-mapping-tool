@@ -24,7 +24,7 @@ pip install -r requirements/requirements-dev.txt
 #### Pre-commit
 
 All code is formatted according to
-[black](https://github.com/psf/black) and [flake8](https://flake8.pycqa.org/en/latest guidelines. The repo is set-up to use [pre-commit](https://github.com/pre-commit/pre-commit). Please run ``pre-commit install`` the first time you are editing. Thereafter all commits will be checked against black and flake8 guidelines.
+[black](https://github.com/psf/black) and [flake8](https://flake8.pycqa.org/en/latest) guidelines. The repo is set-up to use [pre-commit](https://github.com/pre-commit/pre-commit). Please run ``pre-commit install`` the first time you are editing. Thereafter all commits will be checked against black and flake8 guidelines.
 
 To check if your changes pass pre-commit without committing, run:
 
