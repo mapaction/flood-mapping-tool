@@ -1,13 +1,12 @@
 """Home page for Streamlit app."""
 import streamlit as st
-
-from sidebar_functions import add_about, add_logo
+from src.utils_sidebar import add_about, add_logo
 
 # Page configuration
 st.set_page_config(layout="wide")
 
 # Create sidebar
-add_logo("img/MA-logo.png")
+add_logo("app/img/MA-logo.png")
 add_about()
 
 # Set fontisize text
@@ -16,9 +15,10 @@ st.markdown(
 )
 
 # Page title
-st.markdown("# Introduction")
+st.markdown("# Home")
 
-# First section (no header)
+# First section
+st.markdown("## Introduction")
 st.markdown(
     "This tool allows to estimate flood extent using Sentinel-1 "
     "synthetic-aperture radar "
@@ -49,7 +49,7 @@ st.markdown(
     "which is a powerful web-platform for "
     "cloud-based processing of remote sensing data on large scales. More "
     "information on the methodology is given in the Description.<br><br>"
-    "This ana;ysis provides a comprehensive overview of a flooding event, "
+    "This analysis provides a comprehensive overview of a flooding event, "
     "across different areas of interest, from settlements to countries. "
     "However, as mentioned in the UN-SPIDER website, the methodology is "
     "meant for broad information provision in "
@@ -61,7 +61,7 @@ st.markdown(
 )
 
 # Second section
-st.markdown("## How to use it")
+st.markdown("## How to use the tool")
 st.markdown(
     "<ul>"
     "<li><p>"

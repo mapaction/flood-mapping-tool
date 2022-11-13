@@ -3,8 +3,7 @@ import base64
 from datetime import date
 
 import streamlit as st
-
-from config_parameters import config
+from src.config_parameters import config
 
 sidebar_title = "Flood Mapping Tool"
 

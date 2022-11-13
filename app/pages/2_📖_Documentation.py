@@ -1,15 +1,14 @@
 """Documentation page for Streamlit app."""
 import streamlit as st
 from PIL import Image
-
-from config_parameters import config
-from sidebar_functions import add_about, add_logo
+from src.config_parameters import config
+from src.utils_sidebar import add_about, add_logo
 
 # Page configuration
 st.set_page_config(layout="wide")
 
 # Create sidebar
-add_logo("img/MA-logo.png")
+add_logo("app/img/MA-logo.png")
 add_about()
 
 # Set fontisize text
@@ -69,7 +68,7 @@ st.markdown(
 )
 
 # Add image workflow
-img = Image.open("img/workflow.png")
+img = Image.open("app/img/workflow.png")
 st.image(
     img,
     width=350,

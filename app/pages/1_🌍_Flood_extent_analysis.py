@@ -8,17 +8,16 @@ import requests
 import streamlit as st
 import streamlit_ext as ste
 from folium.plugins import Draw, Geocoder, MiniMap
+from src.config_parameters import config
+from src.utils_flood_analysis import derive_flood_extents
+from src.utils_sidebar import add_about, add_logo
 from streamlit_folium import st_folium
-
-from config_parameters import config
-from flood_functions import derive_flood_extents
-from sidebar_functions import add_about, add_logo
 
 # Page configuration
 st.set_page_config(layout="wide")
 
 # Create sidebar
-add_logo("img/MA-logo.png")
+add_logo("app/img/MA-logo.png")
 add_about()
 
 # Page title

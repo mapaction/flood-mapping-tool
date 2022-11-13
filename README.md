@@ -15,7 +15,7 @@ This analysis provides a comprehensive overview of a flooding event, across diff
 Open a terminal and run
 
 ```shell
-streamlit run Introduction.py
+streamlit run app/Home.py
 ```
 
 A new browser window will open and you can start using the tool.
