@@ -19,7 +19,22 @@ The Python version currently used is 3.10. Please install all packages from
 pip install -r requirements.txt
 ```
 
-Open a terminal and run
+[Sign up](https://signup.earthengine.google.com/) for a Google Earth Engine account, if you don't already have one. Open a terminal window, type `python` and then paste the following code:
+
+```python
+import ee
+ee.Authenticate()
+```
+
+Log in to your Google account to obtain the authorization code and paste it back into the terminal. Once you press "Enter", an authorization token will be saved to your computer under the following file path (depending on your operating system):
+
+- Windows: `C:\\Users\\USERNAME\\.config\\earthengine\\credentials`
+- Linux: `/home/USERNAME/.config/earthengine/credentials`
+- MacOS: `/Users/USERNAME/.config/earthengine/credentials`
+
+The credentials will be used when using Google Earth Engine in the app.
+
+Finally, open a terminal and run
 
 ```shell
 streamlit run app/Home.py

@@ -127,4 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# MacOS hidden folder
 .DS_Store
+
+# GEE authentication keys
+.private-key.json
