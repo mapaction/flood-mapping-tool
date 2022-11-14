@@ -8,6 +8,7 @@ config = {
     "about_box_background_color": "#dae7f4",
     # Introduction and Documentation
     "docs_fontsize": "1.2rem",
+    "docs_caption_fontsize": "1rem",
     # Tool
     "expander_header_fontsize": "23px",
     "widget_header_fontsize": "18px",

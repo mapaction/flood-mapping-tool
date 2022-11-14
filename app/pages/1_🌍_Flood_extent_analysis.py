@@ -25,40 +25,37 @@ st.markdown("# Flood extent analysis")
 
 # Set styles for text fontsize and buttons
 st.markdown(
-    "<style>"
-    ".streamlit-expanderHeader {"
-    "font-size: "
-    f"{config['expander_header_fontsize']}"
-    ";"
-    "color: #000053;"
-    "}"
-    ".stDateInput > label {"
-    "font-size:"
-    f"{config['widget_header_fontsize']}"
-    ";"
-    "}"
-    ".stSlider > label {"
-    "font-size:"
-    f"{config['widget_header_fontsize']}"
-    ";"
-    "}"
-    ".stRadio > label {"
-    "font-size:"
-    f"{config['widget_header_fontsize']}"
-    ";"
-    "}"
-    ".stButton > button {"
-    "font-size:"
-    f"{config['button_text_fontsize']}"
-    ";"
-    "font-weight:"
-    f"{config['button_text_fontweight']}"
-    ";"
-    "background-color:"
-    f"{config['button_background_color']}"
-    ";"
-    "}"
-    "</style>",
+    """
+        <style>
+            .streamlit-expanderHeader {
+                font-size: %s;
+                color: #000053;
+            }
+            .stDateInput > label {
+                font-size: %s;
+            }
+            .stSlider > label {
+                font-size: %s;
+            }
+            .stRadio > label {
+                font-size: %s;
+            }
+            .stButton > button {
+                font-size: %s;
+                font-weight: %s;
+                background-color: %s;
+            }
+        </style>
+    """
+    % (
+        config["expander_header_fontsize"],
+        config["widget_header_fontsize"],
+        config["widget_header_fontsize"],
+        config["widget_header_fontsize"],
+        config["button_text_fontsize"],
+        config["button_text_fontweight"],
+        config["button_background_color"],
+    ),
     unsafe_allow_html=True,
 )
 
@@ -199,7 +196,7 @@ def app():
                 st.error("Make sure that the dates were inserted correctly")
             # Output error if no polygons were drawn
             elif not check_drawing:
-                st.error("No region selected")
+                st.error("No region selected.")
             else:
                 # Add output for computation
                 with st.spinner("Computing... Please wait..."):
@@ -242,29 +239,22 @@ def app():
                         )
                         # Center map on flood raster
                         Map2.centerObject(detected_flood_raster)
-                    except Exception as e:
+                    except ee.EEException:
                         # If error contains the sentence below, it means that
                         # an image could not be properly generated
-                        if (
-                            "If one image has no bands, the other must also \
-                            have no bands"
-                            in str(e)
-                        ):
-                            st.error(
-                                "No satellite image found for the selected "
-                                "dates.\n\n"
-                                "Try changing the pass direction or the "
-                                "polarization.\n\n"
-                                "If this does not work, choose different "
-                                "dates: "
-                                "it is likely that the satellite did not "
-                                "cover "
-                                "the area of interest in the range of dates "
-                                "specified (either before or after the "
-                                "flooding event)."
-                            )
-                        else:
-                            raise
+                        st.error(
+                            """
+                            No satellite image found for the selected
+                            dates.\n\n
+                            Try changing the pass direction or the
+                            polarization.\n\n
+                            If this does not work, choose different
+                            dates: it is likely that the satellite did not
+                            cover the area of interest in the range of
+                            dates specified (either before or after the
+                            flooding event).
+                            """
+                        )
                     else:
                         # If computation was succesfull, save outputs for
                         # output map
@@ -303,10 +293,12 @@ def app():
                             )
                         except Exception:
                             st.error(
-                                "The image size is too big for the image to "
-                                "be exported to file. Select a smaller area "
-                                "of interest (side <~ 150km) and repeat the "
-                                "analysis."
+                                """
+                                The image size is too big for the image to
+                                be exported to file. Select a smaller area
+                                of interest (side <~ 150km) and repeat the
+                                analysis.
+                                """
                             )
                         else:
                             response_r = requests.get(url_r)
