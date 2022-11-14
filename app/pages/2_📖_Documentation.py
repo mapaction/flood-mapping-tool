@@ -62,6 +62,13 @@ col1, mid, col2, last = st.columns([5, 3, 10, 10])
 with col1:
     st.image(img, width=350)
 with col2:
+    # Trick to add caption at the bottom of the column, as Streamlit has not
+    # developed a functionality to allign text to bottom
+    space_before_caption = "<br>" * 27
+    st.markdown(
+        space_before_caption,
+        unsafe_allow_html=True,
+    )
     st.markdown(
         """
         <p style="font-size:%s;">
