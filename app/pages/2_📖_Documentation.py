@@ -28,31 +28,31 @@ st.markdown("## Methodology")
 st.markdown(
     """
     The methodology is based on the workflow depicted in Figure 1. In
-    addition to Sentinel-1 synthetic-aperture radar <a href='
-    https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar
-    '>SAR</a> data, two other datasets are used through
-    <a href='https://earthengine.google.com/'>Google Earth Engine</a>:
+    addition to Sentinel-1 synthetic-aperture radar <a href='%s'>SAR</a> data,
+    two other datasets are used through <a href='%s'>Google Earth Engine</a>:
     <ul>
         <li><p>
             The <i>WWF HydroSHEDS Void-Filled DEM, 3 Arc-Seconds</i>
-            <a href='
-            https://developers.google.com/earth-engine/datasets/catalog/
-            WWF_HydroSHEDS_03VFDEM'>dataset</a> is based on elevation data
+            <a href='%s'>dataset</a> is based on elevation data
             obtained in 2000 by NASA's Shuttle Radar Topography Mission (SRTM),
             and it is used to mask out areas with more than 5 percent slope
             (see following section on limitations).
         </p>
         <li><p>
             The <i>JRC Global Surface Water Mapping Layers, v1.4</i>
-            <a href='
-            https://developers.google.com/earth-engine/datasets/catalog/JRC_
-            GSW1_4_GlobalSurfaceWater'>dataset</a> contains maps of the
+            <a href='%s'>dataset</a> contains maps of the
             location and temporal distribution of surface water from 1984 to
             2021, and it is used to mask areas with perennial water bodies,
             such as rivers or lakes.
         </p>
     </ul>
-    """,
+    """
+    % (
+        config["url_sentinel_dataset"],
+        config["url_gee"],
+        config["url_elevation_dataset"],
+        config["url_surface_water_dataset"],
+    ),
     unsafe_allow_html=True,
 )
 
@@ -73,12 +73,13 @@ with col2:
         """
         <p style="font-size:%s;">
             Figure 1. Workflow of the flood mapping methodology (<a href=
-            'https://un-spider.org/advisory-support/recommended-practices/'
-            recommended-practice-google-earth-engine-flood-mapping/in-detail'
-            >source</a>).
+            '%s'>source</a>).
         </p>
         """
-        % config["docs_caption_fontsize"],
+        % (
+            config["docs_caption_fontsize"],
+            config["url_unspider_tutorial_detail"],
+        ),
         unsafe_allow_html=True,
     )
 
@@ -124,19 +125,17 @@ st.markdown(
 
 # Add image satellite overview
 st.image(
-    "https://sentinel.esa.int/documents/247904/4748961/Sentinel-1-Repeat-"
-    "Coverage-Frequency-Geometry-2021.jpg",
+    "%s" % config["url_sentinel_img"],
     width=1000,
 )
 st.markdown(
     """
         <p style="font-size:%s;">
             Figure 2. Overview of the Sentinel-1 observation plan (<a href=
-            'https://sentinel.esa.int/web/sentinel/missions/sentinel-1/'
-            >source</a>).
+            '%s'>source</a>).
         </p>
         """
-    % config["docs_caption_fontsize"],
+    % (config["docs_caption_fontsize"], config["url_sentinel_img_location"]),
     unsafe_allow_html=True,
 )
 
@@ -158,16 +157,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Links for last section
-url_spider = (
-    "https://un-spider.org/advisory-support/recommended-practices/recommended"
-    "-practice-google-earth-engine-flood-mapping/step-by-step"
-)
-url_radar = "https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar"
-url_paper_1 = "https://onlinelibrary.wiley.com/doi/full/10.1111/jfr3.12303"
-url_paper_2 = (
-    "https://www.sciencedirect.com/science/article/abs/pii/S0924271620301702"
-)
 
 # Last section
 st.markdown("## Useful links")
@@ -178,6 +167,11 @@ st.markdown(
     Relevant scientific publications:
     <a href='%s'>1</a>, <a href='%s'>2</a><br>
     """
-    % (url_spider, url_radar, url_paper_1, url_paper_2),
+    % (
+        config["url_unspider_tutorial"],
+        config["url_sentinel_esa"],
+        config["url_publication_1"],
+        config["url_publication_2"],
+    ),
     unsafe_allow_html=True,
 )

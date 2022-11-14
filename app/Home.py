@@ -28,15 +28,13 @@ st.markdown(
     """
     This tool allows to estimate flood extent using Sentinel-1
     synthetic-aperture radar
-    <a href='https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar'>
-    SAR</a> data.<br><br>
+    <a href='%s'>SAR</a> data.<br><br>
     The methodology is based on a <a href=
-    'https://un-spider.org/advisory-support/recommended-practices/recommended-
-    practice-google-earth-engine-flood-mapping'>recommended practice</a>
+    '%s'>recommended practice</a>
     published by the United Nations Platform for Space-based Information for
     Disaster Management and Emergency Response (UN-SPIDER) and it uses several
     satellite imagery datasets to produce the final output. The datasets are
-    retrieved from <a href='https://earthengine.google.com/'>Google Earth
+    retrieved from <a href='%s'>Google Earth
     Engine</a> which is a powerful web-platform for cloud-based processing of
     remote sensing data on large scales. More information on the methodology is
     given in the Description.<br><br>
@@ -46,7 +44,12 @@ st.markdown(
     information provision in a global context, and contains inherent
     uncertainties. Therefore, it is important that the tool is not used as the
     only source of information for rescue response planning.
-    """,
+    """
+    % (
+        config["url_sentinel_esa"],
+        config["url_unspider_tutorial"],
+        config["url_gee"],
+    ),
     unsafe_allow_html=True,
 )
 

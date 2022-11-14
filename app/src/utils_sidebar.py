@@ -127,16 +127,11 @@ def add_about():
                 font-size: 1rem;
                 margin: 0px
             '>
-                <a href='
-                https://mapaction.atlassian.net/wiki/spaces/GAFO/pages/
-                15920922751/Rapid+flood+mapping+from+satellite+imagery
-                '>
+                <a href='%s'>
                 Wiki reference page</a><br>
-                <a href='https://github.com/mapaction/flood-extent-tool'>
+                <a href='%s'>
                 GitHub repository</a><br>
-                <a href='
-                https://mapaction.atlassian.net/wiki/spaces/GAFO/overview
-                '>
+                <a href='%s'>
                 Data Science Lab</a>
             </p>
         </div>
@@ -144,6 +139,9 @@ def add_about():
         % (
             config["about_box_background_color"],
             today,
+            config["url_project_wiki"],
+            config["url_github_repo"],
+            config["url_data_science_wiki"],
         ),
         unsafe_allow_html=True,
     )
@@ -151,6 +149,16 @@ def add_about():
     # Contacts textbox
     st.sidebar.markdown(" ")
     st.sidebar.markdown("## Contacts")
+
+    # Add data scientists and emails
+    contacts_text = ""
+    for ds, email in config["data_scientists"].items():
+        contacts_text += ds + (
+            "<span style='float:right; margin-right: 3px;'>"
+            "<a href='mailto:%s'>%s</a></span><br>" % (email, email)
+        )
+
+    # Add text box
     st.sidebar.markdown(
         """
         <div class='warning' style='
@@ -163,24 +171,10 @@ def add_about():
                 font-size: 1rem;
                 margin: 0px
             '>
-                Piet:
-                <span style='float:right; margin-right: 3px;'>
-                    <a href='mailto:pgerrits@mapaction.org'>
-                    pgerrits@mapaction.org</a>
-                </span><br>
-                Daniele:
-                <span style='float:right; margin-right: 3px;'>
-                    <a href='mailto:dcastellana@mapaction.org'>
-                    dcastellana@mapaction.org</a>
-                </span><br>
-                Cate:
-                <span style='float:right; margin-right: 3px;'>
-                    <a href='mailto:cseale@mapaction.org'>
-                    cseale@mapaction.org</a>
-                </span><br>
+                %s
             </p>
         </div>
         """
-        % config["about_box_background_color"],
+        % (config["about_box_background_color"], contacts_text),
         unsafe_allow_html=True,
     )
