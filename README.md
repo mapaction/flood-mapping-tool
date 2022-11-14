@@ -1,6 +1,6 @@
 # Flood mapping tool
 
-[![license](https://img.shields.io/github/license/OCHA-DAP/pa-aa-toolbox.svg)](https://github.com/mapaction/flood-extent-tool/blob/docs/LICENSE)
+[![license](https://img.shields.io/github/license/OCHA-DAP/pa-aa-toolbox.svg)](https://github.com/mapaction/flood-mapping-tool/blob/main/LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 
@@ -27,7 +27,7 @@ streamlit run app/Home.py
 
 A new browser window will open and you can start using the tool.
 
-## Development
+## Contributing
 
 #### Pre-commit
 
