@@ -1,6 +1,6 @@
-earthengine-api
-folium
-geemap
-streamlit
-streamlit_ext
-streamlit-folium
+earthengine-api==0.1.331
+folium==0.13.0
+geemap==0.17.2
+streamlit==1.14.1
+streamlit_ext==0.1.4
+streamlit-folium==0.7.0
