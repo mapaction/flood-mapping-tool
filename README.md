@@ -12,6 +12,13 @@ This analysis provides a comprehensive overview of a flooding event, across diff
 
 ## Usage
 
+The Python version currently used is 3.10. Please install all packages from
+``requirements.txt``:
+
+```shell
+pip install -r requirements.txt
+```
+
 Open a terminal and run
 
 ```shell
@@ -21,15 +28,6 @@ streamlit run app/Home.py
 A new browser window will open and you can start using the tool.
 
 ## Development
-
-#### Installation
-
-Development is currently done using Python 3.10. Please install all packages from
-``requirements.txt``:
-
-```shell
-pip install -r requirements.txt
-```
 
 #### Pre-commit
 
