@@ -12,12 +12,16 @@ This analysis provides a comprehensive overview of a flooding event, across diff
 
 ## Usage
 
+#### Requirements
+
 The Python version currently used is 3.10. Please install all packages from
 ``requirements.txt``:
 
 ```shell
 pip install -r requirements.txt
 ```
+
+#### Google Earth Engine authentication
 
 [Sign up](https://signup.earthengine.google.com/) for a Google Earth Engine account, if you don't already have one. Open a terminal window, type `python` and then paste the following code:
 
@@ -32,7 +36,9 @@ Log in to your Google account to obtain the authorization code and paste it back
 - Linux: `/home/USERNAME/.config/earthengine/credentials`
 - MacOS: `/Users/USERNAME/.config/earthengine/credentials`
 
-The credentials will be used when using Google Earth Engine in the app.
+The credentials will be used when initialising Google Earth Engine in the app.
+
+#### Run the app
 
 Finally, open a terminal and run
 
