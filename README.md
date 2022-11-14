@@ -25,10 +25,10 @@ A new browser window will open and you can start using the tool.
 #### Installation
 
 Development is currently done using Python 3.10. Please install all packages from
-``requirements/requirements-dev.txt``:
+``requirements.txt``:
 
 ```shell
-pip install -r requirements/requirements-dev.txt
+pip install -r requirements.txt
 ```
 
 #### Pre-commit
