@@ -15,7 +15,7 @@ from src.utils_layout import add_about, add_logo, toggle_menu_button
 from streamlit_folium import st_folium
 
 # Page configuration
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title=config["browser_title"])
 
 # If app is deployed hide menu button
 toggle_menu_button()

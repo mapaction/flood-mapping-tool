@@ -1,5 +1,7 @@
 """Configuration file."""
 config = {
+    # Title browser tab
+    "browser_title": "Flood mapping tool - MapAction",
     # Sidebar
     "MA_logo_width": "60%",
     "MA_logo_background_position": "35% 10%",
