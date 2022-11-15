@@ -5,8 +5,9 @@ config = {
     # Sidebar
     "MA_logo_width": "60%",
     "MA_logo_background_position": "35% 10%",
+    "sidebar_header": "Flood Mapping Tool",
     "sidebar_header_fontsize": "30px",
-    "sidebar_header_fontweight": "30px",
+    "sidebar_header_fontweight": "bold",
     "about_box_background_color": "#dae7f4",
     # Introduction and Documentation
     "docs_fontsize": "1.2rem",
