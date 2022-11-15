@@ -24,7 +24,11 @@ st.markdown(
 # Page title
 st.markdown("# Home")
 
-st.markdown(os.getcwd())
+env_str = ""
+for key, value in os.environ.items():
+    env_str += key + ": " + value + "<br>"
+
+st.markdown(env_str, unsafe_allow_html=True)
 
 # First section
 st.markdown("## Introduction")
