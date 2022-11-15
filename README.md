@@ -1,7 +1,6 @@
 # Flood mapping tool
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://mapaction-flood-mapping-tool-apphome-deploy-to-streamlit-a6blbx.streamlit.app/)
-<a href="https://mapaction-flood-mapping-tool-apphome-deploy-to-streamlit-a6blbx.streamlit.app/" target="_blank">![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)</a>
 [![license](https://img.shields.io/github/license/OCHA-DAP/pa-aa-toolbox.svg)](https://github.com/mapaction/flood-mapping-tool/blob/main/LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
