@@ -5,7 +5,7 @@ from ee import oauth
 from google.oauth2 import service_account
 
 
-@st.cache
+@st.experimental_memo
 def ee_initialize():
     """Fetch credentials and initialise Google Earth Engine."""
     service_account_keys = st.secrets["ee_keys"]
