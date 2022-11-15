@@ -135,4 +135,4 @@ dmypy.json
 .private-key.json
 
 # Streamlit
-.streamlit
+.streamlit/secrets.toml

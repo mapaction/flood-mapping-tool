@@ -11,11 +11,14 @@ from folium.plugins import Draw, Geocoder, MiniMap
 from src.config_parameters import config
 from src.utils_ee import ee_initialize
 from src.utils_flood_analysis import derive_flood_extents
-from src.utils_sidebar import add_about, add_logo
+from src.utils_layout import add_about, add_logo, toggle_menu_button
 from streamlit_folium import st_folium
 
 # Page configuration
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title=config["browser_title"])
+
+# If app is deployed hide menu button
+toggle_menu_button()
 
 # Create sidebar
 add_logo("app/img/MA-logo.png")
@@ -288,6 +291,10 @@ def app():
                             vector = st.session_state.detected_flood_vector
                             url_v = vector.getDownloadUrl("GEOJSON")
                             response_v = requests.get(url_v)
+                            filename = "flood_extent"
+                            timestamp = dt.datetime.now().strftime(
+                                "%Y-%m-%d_%H-%M"
+                            )
                             with row2:
                                 # Create download buttons for raster and vector
                                 # data
@@ -295,14 +302,24 @@ def app():
                                     ste.download_button(
                                         label="Download Raster Extent",
                                         data=response_r.content,
-                                        file_name="flood_extent_raster.tif",
+                                        file_name=(
+                                            f"{filename}"
+                                            "_raster_"
+                                            f"{timestamp}"
+                                            ".tif"
+                                        ),
                                         mime="image/tif",
                                     )
                                 with open("flood_extent.geojson", "wb"):
                                     ste.download_button(
                                         label="Download Vector Extent",
                                         data=response_v.content,
-                                        file_name="flood_extent_vec.geojson",
+                                        file_name=(
+                                            f"{filename}"
+                                            "_vector_"
+                                            f"{timestamp}"
+                                            ".geojson"
+                                        ),
                                         mime="text/json",
                                     )
                             # Output for computation complete

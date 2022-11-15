@@ -2,10 +2,13 @@
 import streamlit as st
 from PIL import Image
 from src.config_parameters import config
-from src.utils_sidebar import add_about, add_logo
+from src.utils_layout import add_about, add_logo, toggle_menu_button
 
 # Page configuration
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title=config["browser_title"])
+
+# If app is deployed hide menu button
+toggle_menu_button()
 
 # Create sidebar
 add_logo("app/img/MA-logo.png")

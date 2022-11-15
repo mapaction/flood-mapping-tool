@@ -1,10 +1,34 @@
 """Functions for the sidebar of the Streamlit app."""
 import base64
+import os
 from datetime import date
 
 import streamlit as st
 from src.config_parameters import config
 
+
+# Check if app is deployed
+def is_app_on_streamlit():
+    """Check whether the app is on streamlit or runs locally."""
+    return "HOSTNAME" in os.environ and os.environ["HOSTNAME"] == "streamlit"
+
+
+# General layout
+def toggle_menu_button():
+    """If app is on streamlit, hide menu button."""
+    if is_app_on_streamlit():
+        st.markdown(
+            """
+        <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+        </style>
+        """,
+            unsafe_allow_html=True,
+        )
+
+
+# Sidebar
 sidebar_title = "Flood Mapping Tool"
 
 
