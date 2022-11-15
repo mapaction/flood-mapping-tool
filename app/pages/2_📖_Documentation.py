@@ -140,7 +140,7 @@ st.markdown(
 )
 
 # Third section
-st.markdown("## Key limtations")
+st.markdown("## Key limitations")
 st.markdown(
     """
     Radar imagery is great for detecting floods, as it is good at picking up

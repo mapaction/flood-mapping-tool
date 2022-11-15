@@ -9,6 +9,7 @@ import streamlit as st
 import streamlit_ext as ste
 from folium.plugins import Draw, Geocoder, MiniMap
 from src.config_parameters import config
+from src.utils_ee import ee_initialize
 from src.utils_flood_analysis import derive_flood_extents
 from src.utils_sidebar import add_about, add_logo
 from streamlit_folium import st_folium
@@ -59,14 +60,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
 # Initialise Google Earth Engine
-@st.cache
-def _initialize_ee():
-    ee.Initialize()
-
-
-_initialize_ee()
+ee_initialize()
 
 
 # Create app
@@ -103,7 +98,7 @@ def app():
                 draw_options={
                     "circle": False,
                     "polyline": False,
-                    "polygon": False,
+                    "polygon": True,
                     "circle": False,
                     "marker": False,
                     "circlemarker": False,
@@ -113,20 +108,8 @@ def app():
             Geocoder(add_marker=False).add_to(Map)
             # Add minimap to map
             MiniMap().add_to(Map)
-            # Add file uploader for GeoJSON to add polygons to map
-            # data = st.file_uploader(
-            #     "Upload a GeoJSON file to use as an ROI.",
-            #     type=["geojson", "kml", "zip"],
-            # )
-            # ss = st.empty()
-            # with ss:
             # Export map to Streamlit
             output = st_folium(Map, width=800, height=600)
-            # if data is not None:
-            #     with ss:
-            #         # gj = geojson.load(data)
-            #         # coords = gj['features'][0]['geometry']['coordinates']
-            #         st.write('Still to be implemented')
     with col2:
         # Add collapsable container for image dates
         with st.expander("Choose Image Dates"):
@@ -246,8 +229,7 @@ def app():
                             """
                             No satellite image found for the selected
                             dates.\n\n
-                            Try changing the pass direction or the
-                            polarization.\n\n
+                            Try changing the pass direction.\n\n
                             If this does not work, choose different
                             dates: it is likely that the satellite did not
                             cover the area of interest in the range of
