@@ -29,9 +29,6 @@ def toggle_menu_button():
 
 
 # Sidebar
-sidebar_title = "Flood Mapping Tool"
-
-
 @st.cache(allow_output_mutation=True)
 def get_base64_of_bin_file(png_file):
     """
@@ -50,11 +47,6 @@ def get_base64_of_bin_file(png_file):
 
 def build_markup_for_logo(
     png_file,
-    background_position=f"{config['MA_logo_background_position']}",
-    image_width=f"{config['MA_logo_width']}",
-    image_height="",
-    sidebar_header_fontsize=config["sidebar_header_fontsize"],
-    sidebar_header_fontweight=config["sidebar_header_fontweight"],
 ):
     """
     Create full string for navigation bar, including logo and title.
@@ -80,25 +72,25 @@ def build_markup_for_logo(
                     background-size: %s %s;
                 }
                 [data-testid="stSidebarNav"]::before {
-                    content: %s;
+                    content: "%s";
                     margin-left: 20px;
                     margin-top: 20px;
                     margin-bottom: 20px;
-                    padding-bottom: 50px;
                     font-size: %s;
                     font-weight: %s;
                     position: relative;
+                    text-align: center;
                     top: 85px;
                 }
             </style>
             """ % (
         binary_string,
-        background_position,
-        image_width,
-        image_height,
-        sidebar_title,
-        sidebar_header_fontsize,
-        sidebar_header_fontweight,
+        config["MA_logo_background_position"],
+        config["MA_logo_width"],
+        "",
+        config["sidebar_header"],
+        config["sidebar_header_fontsize"],
+        config["sidebar_header_fontweight"],
     )
 
 
@@ -112,6 +104,7 @@ def add_logo(png_file):
         None
     """
     logo_markup = build_markup_for_logo(png_file)
+    # st.sidebar.title("ciao")
     st.markdown(
         logo_markup,
         unsafe_allow_html=True,
