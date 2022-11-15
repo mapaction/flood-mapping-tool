@@ -11,11 +11,14 @@ from folium.plugins import Draw, Geocoder, MiniMap
 from src.config_parameters import config
 from src.utils_ee import ee_initialize
 from src.utils_flood_analysis import derive_flood_extents
-from src.utils_sidebar import add_about, add_logo
+from src.utils_layout import add_about, add_logo, toggle_menu_button
 from streamlit_folium import st_folium
 
 # Page configuration
 st.set_page_config(layout="wide")
+
+# If app is deployed hide menu button
+toggle_menu_button()
 
 # Create sidebar
 add_logo("app/img/MA-logo.png")
