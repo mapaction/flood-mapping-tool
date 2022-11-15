@@ -1,4 +1,4 @@
-# Flood mapping tool
+# Flood Mapping Tool
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://mapaction-flood-map.streamlit.app/)
 [![license](https://img.shields.io/github/license/OCHA-DAP/pa-aa-toolbox.svg)](https://github.com/mapaction/flood-mapping-tool/blob/main/LICENSE)

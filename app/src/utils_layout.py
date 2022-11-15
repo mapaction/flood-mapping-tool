@@ -1,4 +1,4 @@
-"""Functions for the sidebar of the Streamlit app."""
+"""Functions for the layout of the Streamlit app, including the sidebar."""
 import base64
 import os
 from datetime import date
