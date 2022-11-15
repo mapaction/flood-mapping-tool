@@ -133,3 +133,6 @@ dmypy.json
 
 # GEE authentication keys
 .private-key.json
+
+# Streamlit
+.streamlit
