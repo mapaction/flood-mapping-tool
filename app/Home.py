@@ -1,6 +1,4 @@
 """Home page for Streamlit app."""
-import os
-
 import streamlit as st
 from src.config_parameters import config
 from src.utils_sidebar import add_about, add_logo
@@ -23,12 +21,6 @@ st.markdown(
 
 # Page title
 st.markdown("# Home")
-
-env_str = ""
-for key, value in os.environ.items():
-    env_str += key + ": " + value + "<br>"
-
-st.markdown(env_str, unsafe_allow_html=True)
 
 # First section
 st.markdown("## Introduction")
