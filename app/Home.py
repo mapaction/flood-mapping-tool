@@ -1,10 +1,15 @@
 """Home page for Streamlit app."""
 import streamlit as st
-from src.config_parameters import config
-from src.utils_layout import add_about, add_logo, toggle_menu_button
+from src.config_parameters import params
+from src.utils import (
+    add_about,
+    add_logo,
+    set_home_page_style,
+    toggle_menu_button,
+)
 
 # Page configuration
-st.set_page_config(layout="wide", page_title=config["browser_title"])
+st.set_page_config(layout="wide", page_title=params["browser_title"])
 
 # If app is deployed hide menu button
 toggle_menu_button()
@@ -13,14 +18,8 @@ toggle_menu_button()
 add_logo("app/img/MA-logo.png")
 add_about()
 
-# Set fontisize text
-st.markdown(
-    """
-    <style> p { font-size: %s; } </style>
-    """
-    % config["docs_fontsize"],
-    unsafe_allow_html=True,
-)
+# Set page style
+set_home_page_style()
 
 # Page title
 st.markdown("# Home")
@@ -49,9 +48,9 @@ st.markdown(
     only source of information for rescue response planning.
     """
     % (
-        config["url_sentinel_esa"],
-        config["url_unspider_tutorial"],
-        config["url_gee"],
+        params["url_sentinel_esa"],
+        params["url_unspider_tutorial"],
+        params["url_gee"],
     ),
     unsafe_allow_html=True,
 )

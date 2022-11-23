@@ -8,14 +8,19 @@ import requests
 import streamlit as st
 import streamlit_ext as ste
 from folium.plugins import Draw, Geocoder, MiniMap
-from src.config_parameters import config
+from src.config_parameters import params
+from src.utils import (
+    add_about,
+    add_logo,
+    set_tool_page_style,
+    toggle_menu_button,
+)
 from src.utils_ee import ee_initialize
 from src.utils_flood_analysis import derive_flood_extents
-from src.utils_layout import add_about, add_logo, toggle_menu_button
 from streamlit_folium import st_folium
 
 # Page configuration
-st.set_page_config(layout="wide", page_title=config["browser_title"])
+st.set_page_config(layout="wide", page_title=params["browser_title"])
 
 # If app is deployed hide menu button
 toggle_menu_button()
@@ -27,41 +32,8 @@ add_about()
 # Page title
 st.markdown("# Flood extent analysis")
 
-# Set styles for text fontsize and buttons
-st.markdown(
-    """
-        <style>
-            .streamlit-expanderHeader {
-                font-size: %s;
-                color: #000053;
-            }
-            .stDateInput > label {
-                font-size: %s;
-            }
-            .stSlider > label {
-                font-size: %s;
-            }
-            .stRadio > label {
-                font-size: %s;
-            }
-            .stButton > button {
-                font-size: %s;
-                font-weight: %s;
-                background-color: %s;
-            }
-        </style>
-    """
-    % (
-        config["expander_header_fontsize"],
-        config["widget_header_fontsize"],
-        config["widget_header_fontsize"],
-        config["widget_header_fontsize"],
-        config["button_text_fontsize"],
-        config["button_text_fontweight"],
-        config["button_background_color"],
-    ),
-    unsafe_allow_html=True,
-)
+# Set page style
+set_tool_page_style()
 
 # Initialise Google Earth Engine
 ee_initialize()

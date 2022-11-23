@@ -1,11 +1,16 @@
 """Documentation page for Streamlit app."""
 import streamlit as st
 from PIL import Image
-from src.config_parameters import config
-from src.utils_layout import add_about, add_logo, toggle_menu_button
+from src.config_parameters import params
+from src.utils import (
+    add_about,
+    add_logo,
+    set_doc_page_style,
+    toggle_menu_button,
+)
 
 # Page configuration
-st.set_page_config(layout="wide", page_title=config["browser_title"])
+st.set_page_config(layout="wide", page_title=params["browser_title"])
 
 # If app is deployed hide menu button
 toggle_menu_button()
@@ -14,14 +19,8 @@ toggle_menu_button()
 add_logo("app/img/MA-logo.png")
 add_about()
 
-# Set fontisize text
-st.markdown(
-    """
-    <style> p { font-size: %s; } </style>
-    """
-    % config["docs_fontsize"],
-    unsafe_allow_html=True,
-)
+# Set page style
+set_doc_page_style()
 
 # Page title
 st.markdown("# Documentation")
@@ -51,10 +50,10 @@ st.markdown(
     </ul>
     """
     % (
-        config["url_sentinel_dataset"],
-        config["url_gee"],
-        config["url_elevation_dataset"],
-        config["url_surface_water_dataset"],
+        params["url_sentinel_dataset"],
+        params["url_gee"],
+        params["url_elevation_dataset"],
+        params["url_surface_water_dataset"],
     ),
     unsafe_allow_html=True,
 )
@@ -80,8 +79,8 @@ with col2:
         </p>
         """
         % (
-            config["docs_caption_fontsize"],
-            config["url_unspider_tutorial_detail"],
+            params["docs_caption_fontsize"],
+            params["url_unspider_tutorial_detail"],
         ),
         unsafe_allow_html=True,
     )
@@ -128,7 +127,7 @@ st.markdown(
 
 # Add image satellite overview
 st.image(
-    "%s" % config["url_sentinel_img"],
+    "%s" % params["url_sentinel_img"],
     width=1000,
 )
 st.markdown(
@@ -138,7 +137,7 @@ st.markdown(
             '%s'>source</a>).
         </p>
         """
-    % (config["docs_caption_fontsize"], config["url_sentinel_img_location"]),
+    % (params["docs_caption_fontsize"], params["url_sentinel_img_location"]),
     unsafe_allow_html=True,
 )
 
@@ -171,10 +170,10 @@ st.markdown(
     <a href='%s'>1</a>, <a href='%s'>2</a><br>
     """
     % (
-        config["url_unspider_tutorial"],
-        config["url_sentinel_esa"],
-        config["url_publication_1"],
-        config["url_publication_2"],
+        params["url_unspider_tutorial"],
+        params["url_sentinel_esa"],
+        params["url_publication_1"],
+        params["url_publication_2"],
     ),
     unsafe_allow_html=True,
 )
