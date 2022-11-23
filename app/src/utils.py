@@ -4,7 +4,7 @@ import os
 from datetime import date
 
 import streamlit as st
-from src.config_parameters import config
+from src.config_parameters import params
 
 
 # Check if app is deployed
@@ -26,6 +26,69 @@ def toggle_menu_button():
         """,
             unsafe_allow_html=True,
         )
+
+
+# Home page
+def set_home_page_style():
+    """Set style home page."""
+    st.markdown(
+        """
+    <style> p { font-size: %s; } </style>
+    """
+        % params["docs_fontsize"],
+        unsafe_allow_html=True,
+    )
+
+
+# Documentation page
+def set_doc_page_style():
+    """Set style documentation page."""
+    st.markdown(
+        """
+    <style> p { font-size: %s; } </style>
+    """
+        % params["docs_fontsize"],
+        unsafe_allow_html=True,
+    )
+
+
+# Tool page
+def set_tool_page_style():
+    """Set style tool page."""
+    st.markdown(
+        """
+            <style>
+                .streamlit-expanderHeader {
+                    font-size: %s;
+                    color: #000053;
+                }
+                .stDateInput > label {
+                    font-size: %s;
+                }
+                .stSlider > label {
+                    font-size: %s;
+                }
+                .stRadio > label {
+                    font-size: %s;
+                }
+                .stButton > button {
+                    font-size: %s;
+                    font-weight: %s;
+                    background-color: %s;
+                }
+            </style>
+        """
+        % (
+            params["expander_header_fontsize"],
+            params["widget_header_fontsize"],
+            params["widget_header_fontsize"],
+            params["widget_header_fontsize"],
+            params["button_text_fontsize"],
+            params["button_text_fontweight"],
+            params["button_background_color"],
+        ),
+        unsafe_allow_html=True,
+    )
 
 
 # Sidebar
@@ -85,12 +148,12 @@ def build_markup_for_logo(
             </style>
             """ % (
         binary_string,
-        config["MA_logo_background_position"],
-        config["MA_logo_width"],
+        params["MA_logo_background_position"],
+        params["MA_logo_width"],
         "",
-        config["sidebar_header"],
-        config["sidebar_header_fontsize"],
-        config["sidebar_header_fontweight"],
+        params["sidebar_header"],
+        params["sidebar_header_fontsize"],
+        params["sidebar_header_fontweight"],
     )
 
 
@@ -154,11 +217,11 @@ def add_about():
         </div>
         """
         % (
-            config["about_box_background_color"],
+            params["about_box_background_color"],
             today,
-            config["url_project_wiki"],
-            config["url_github_repo"],
-            config["url_data_science_wiki"],
+            params["url_project_wiki"],
+            params["url_github_repo"],
+            params["url_data_science_wiki"],
         ),
         unsafe_allow_html=True,
     )
@@ -169,7 +232,7 @@ def add_about():
 
     # Add data scientists and emails
     contacts_text = ""
-    for ds, email in config["data_scientists"].items():
+    for ds, email in params["data_scientists"].items():
         contacts_text += ds + (
             "<span style='float:right; margin-right: 3px;'>"
             "<a href='mailto:%s'>%s</a></span><br>" % (email, email)
@@ -192,6 +255,6 @@ def add_about():
             </p>
         </div>
         """
-        % (config["about_box_background_color"], contacts_text),
+        % (params["about_box_background_color"], contacts_text),
         unsafe_allow_html=True,
     )

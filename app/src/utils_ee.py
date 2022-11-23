@@ -3,7 +3,7 @@ import ee
 import streamlit as st
 from ee import oauth
 from google.oauth2 import service_account
-from src.utils_layout import is_app_on_streamlit
+from src.utils import is_app_on_streamlit
 
 
 @st.experimental_memo
