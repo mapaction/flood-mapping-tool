@@ -195,6 +195,10 @@ if submitted:
                         ee_object=detected_flood_raster,
                         name="Flood extent raster",
                     )
+                    Map2.add_layer(
+                        ee_object=detected_flood_vector,
+                        name="Flood extent vector",
+                    )
                     # Center map on flood raster
                     Map2.centerObject(detected_flood_raster)
                 except ee.EEException:
