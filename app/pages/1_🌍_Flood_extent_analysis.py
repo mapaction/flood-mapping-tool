@@ -192,8 +192,8 @@ if submitted:
                 try:
                     # Add flood vector layer to map
                     Map2.add_layer(
-                        ee_object=detected_flood_vector,
-                        name="Flood extent vector",
+                        ee_object=detected_flood_raster,
+                        name="Flood extent raster",
                     )
                     # Center map on flood raster
                     Map2.centerObject(detected_flood_raster)
