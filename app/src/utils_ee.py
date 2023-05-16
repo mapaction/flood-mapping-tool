@@ -19,7 +19,9 @@ def ee_initialize(force_use_service_account: bool = False):
     Inputs:
         force_use_service_account (bool): If True, the dedicated Google
             service account is used, regardless of whether the app is run
-            locally or in the cloud.
+            locally or in the cloud. To be able to use a service account
+            locally, a file called "secrets.toml" should be added to the
+            folder ".streamlit", in the main project folder.
 
     Returns:
         None
