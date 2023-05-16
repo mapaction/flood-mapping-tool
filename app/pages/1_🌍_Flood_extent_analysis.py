@@ -36,7 +36,7 @@ st.markdown("# Flood extent analysis")
 set_tool_page_style()
 
 # Initialise Google Earth Engine
-ee_initialize()
+ee_initialize(force_use_service_account=True)
 
 
 # Output_created is useful to decide whether the bottom panel with the
