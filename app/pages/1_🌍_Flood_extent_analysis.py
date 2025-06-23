@@ -6,7 +6,7 @@ import folium
 import geemap.foliumap as geemap
 import requests
 import streamlit as st
-import streamlit_ext as ste
+# import streamlit_ext as ste
 from folium.plugins import Draw, Geocoder, MiniMap
 from src.config_parameters import params
 from src.utils import (
@@ -275,7 +275,7 @@ if st.session_state.output_created:
                             # Create download buttons for raster and vector
                             # data
                             with open("flood_extent.tif", "wb"):
-                                ste.download_button(
+                                st.download_button(
                                     label="Download Raster Extent",
                                     data=response_r.content,
                                     file_name=(
@@ -287,7 +287,7 @@ if st.session_state.output_created:
                                     mime="image/tif",
                                 )
                             with open("flood_extent.geojson", "wb"):
-                                ste.download_button(
+                                st.download_button(
                                     label="Download Vector Extent",
                                     data=response_v.content,
                                     file_name=(
